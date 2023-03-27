@@ -1,5 +1,6 @@
 // Import Dependencies
 import express from 'express'
+import 'express-async-errors'
 
 // Import Routes
 import { currentuserRouter } from './routes/auth/current-user'

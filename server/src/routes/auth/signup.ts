@@ -1,8 +1,10 @@
 // Import Dependencies
 import express, {Request, Response} from 'express'
-import { body, validationResult } from 'express-validator'
-import { RequestValidationError } from '../../errors/request-validation-error'
+import { body } from 'express-validator'
+import { BadRequestError } from '../../errors/bad-request-error'
 import { validateRequest } from '../../middlewares/validate-request'
+
+import { User } from '../../models/user'
 // Create router
 const router = express.Router()
 
@@ -15,10 +17,18 @@ router.post('/api/users/signup',
             .trim()
             .isLength({min: 4, max:20})
     ]
-, validateRequest,(req: Request, res: Response) => {
+, validateRequest, async (req: Request, res: Response) => {
     const {email, password } = req.body
 
-    res.send({})
+    const existingUser = await User.findOne({email})
+
+    if(existingUser) {
+        throw new BadRequestError('Email in use')
+    }
+
+    const user = User.build({email, password})
+    await user.save()
+    res.status(201).send(user)
 })
 
 export { router as signupRouter }
