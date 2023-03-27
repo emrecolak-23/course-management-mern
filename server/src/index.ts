@@ -1,24 +1,27 @@
 // Import Dependencies
-import express from 'express'
+import mongoose from 'mongoose'
+import * as dotenv from 'dotenv'
+dotenv.config()
 
-// Import Routes
-import { currentuserRouter } from './routes/auth/current-user'
-import { signupRouter } from './routes/auth/signup'
-import { signinRouter } from './routes/auth/signin'
-import { signoutRouter } from './routes/auth/signout'
+// Import app instance
+import {app} from './app'
 
-// Initialize express
-const app = express()
+const start = async () => {
 
-// Middlewares
-app.use(express.json())
+    if(!process.env.MONGO_URI) {
+        throw new Error('MONGO_URI must be defined')
+    }
 
-app.use(currentuserRouter)
-app.use(signupRouter)
-app.use(signinRouter)
-app.use(signoutRouter)
+    try {
+        await mongoose.connect(process.env.MONGO_URI)
+        console.log('Connected to MongoDB')
+    } catch(error) {
+        console.error(error)
+    }
 
-// Listen Server
-app.listen(3000, () => {
-    console.log('Listening on port', 3000)
-})
+    app.listen(3000, () => {
+        console.log('Listening on port 3000!')
+    })
+}
+
+start()
