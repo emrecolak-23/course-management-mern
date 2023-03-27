@@ -4,10 +4,8 @@ import 'express-async-errors'
 import cookieSession from 'cookie-session'
 
 // Import Routes
-import { currentuserRouter } from './routes/auth/current-user'
-import { signupRouter } from './routes/auth/signup'
-import { signinRouter } from './routes/auth/signin'
-import { signoutRouter } from './routes/auth/signout'
+import { signoutRouter, currentuserRouter, signupRouter, signinRouter } from './routes/auth/index'
+import { listCourseRouter, createCourseRouter, showCourseRouter, updateCourseRouter, deleteCourseRouter} from './routes/course/index'
 
 // Import Error
 import { NotFoundError } from './errors/not-found-error'
@@ -27,10 +25,17 @@ app.use(
     })
 )
 
+// Aut Routes
 app.use(currentuserRouter)
 app.use(signupRouter)
 app.use(signinRouter)
 app.use(signoutRouter)
+// Course Routes
+app.use(listCourseRouter)
+app.use(createCourseRouter)
+app.use(showCourseRouter)
+app.use(updateCourseRouter)
+app.use(deleteCourseRouter)
 
 app.all('*', async (req, res, next) => {
     next(new NotFoundError())
