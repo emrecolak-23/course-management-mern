@@ -1,6 +1,7 @@
 // Import Dependencies
 import express, {Request, Response} from 'express'
 import { body, validationResult } from 'express-validator'
+import { RequestValidationError } from '../../errors/request-validation-error'
 // Create router
 const router = express.Router()
 
@@ -17,7 +18,7 @@ router.post('/api/users/signup',
     const {email, password } = req.body
     const errors = validationResult(req)
     if(!errors.isEmpty()) {
-        return res.send(errors.array())
+       throw new RequestValidationError(errors.array())
     }
     res.send({})
 })
