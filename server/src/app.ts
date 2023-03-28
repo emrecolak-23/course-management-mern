@@ -2,6 +2,7 @@
 import express from 'express'
 import 'express-async-errors'
 import cookieSession from 'cookie-session'
+import cors from 'cors'
 
 // Import Routes
 import { signoutRouter, currentuserRouter, signupRouter, signinRouter } from './routes/auth/index'
@@ -18,6 +19,7 @@ const app = express()
 
 // Middlewares
 app.use(express.json())
+app.use(cors({credentials: true,  origin: 'http://localhost:5173'}))
 app.use(
     cookieSession({
         signed: false,

@@ -2,19 +2,24 @@ import {SignInContainer, ButtonContainer}  from  './sign-in-form.styles';
 import FormInput from '../form-input/form-input.component';
 import Button from '../button/button.component';
 import { useState, ChangeEvent, FormEvent } from 'react';
+import { useDispatch } from 'react-redux';
+import { signIn } from '../../store/thunks/signIn';
+import { useNavigate } from 'react-router-dom';
 const defaultFormFields = {
     email: '',
     password: ''
 }
 
 const SignInForm = () => {
-
+   const dispatch = useDispatch()
+   const navigate = useNavigate()
    const [formFields, setFormFields] = useState(defaultFormFields);
    const { email, password } = formFields;
 
    const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-   
+    dispatch<any>(signIn(formFields))
+    navigate('/')
    }
 
    const handleChange = (event:ChangeEvent<HTMLInputElement>) => {

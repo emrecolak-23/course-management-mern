@@ -4,9 +4,11 @@ import express, {Request, Response} from 'express'
 // Create router
 const router = express.Router()
 
-router.post('/api/users/signout', (req: Request, res: Response) => {
+router.get('/api/users/signout', (req: Request, res: Response) => {
     req.session = null
-    res.send({})
+    res.cookie('session', '', { maxAge: 0 });
+
+    res.send(null)
 })
 
 export { router as signoutRouter}

@@ -3,17 +3,28 @@ import { useState, ChangeEvent, FormEvent } from 'react';
 
 import FormInput from '../form-input/form-input.component';
 import Button from '../button/button.component';
+import { useDispatch } from 'react-redux'
+import { signUp } from '../../store';
 
-const defaultFormFields = {
+interface FormValue {
+    displayName: string
+    email: string
+    password: string,
+}
+
+const defaultFormFields:FormValue = {
     displayName: '',
     email: '',
     password: '',
-    confirmPassword: '',
 };
 
 const SignUpForm = () => {
-    const [formFields, setFormFields] = useState(defaultFormFields);
-    const { displayName, email, password, confirmPassword } = formFields;
+    const dispatch = useDispatch()
+
+    const [formFields, setFormFields] = useState<FormValue>(defaultFormFields);
+    const { displayName, email, password } = formFields;
+    
+       
     const resetFormFields = () => {
         setFormFields(defaultFormFields);
     };
@@ -25,6 +36,12 @@ const SignUpForm = () => {
 
     const handleSubmit = (event:FormEvent<HTMLFormElement>) => {
         event.preventDefault()
+
+     
+        dispatch<any>(signUp(formFields))
+
+        resetFormFields()
+        
     }
 
     return <SignUpContainer>
@@ -55,14 +72,7 @@ const SignUpForm = () => {
           onChange={handleChange}
           required
         />
-        <FormInput
-          label="Confirm Password"
-          type="password"
-          name="confirmPassword"
-          value={confirmPassword}
-          onChange={handleChange}
-          required
-        />
+       
         <Button type="submit">Sign Up</Button>
       </form>
     </SignUpContainer>
