@@ -23,13 +23,11 @@ const Navigation = () => {
         dispatch<any>(singOut())
     }
 
-    console.log(currentUser)
 
     let authLink;
     if (!currentUser) {
       authLink = <NavLink to="/auth">SIGN IN</NavLink>;
     } else {
-        console.log(currentUser)
       authLink = (
         <NavLink as="span" onClick={handleSignOut}>
           SIGN OUT
