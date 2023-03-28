@@ -2,6 +2,7 @@ import {
     CourseListContainer,
     CourseListHeader,
     HeaderBlock,
+    AddButton
   } from './course-list.styles';
 
   import { useDispatch } from 'react-redux';
@@ -47,6 +48,9 @@ const CourseList = () => {
         { courses && courses.map((course) => {
         return <CourseItem key={course.id} courseItem={course} />;
       })}
+      <AddButton>
+        +
+      </AddButton>
       </CourseListContainer>
     )
 }

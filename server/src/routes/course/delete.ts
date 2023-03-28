@@ -14,7 +14,7 @@ router.delete('/api/courses/:id', requireAuth,  async (req: Request, res: Respon
     
     await course.deleteOne()
 
-    res.status(204).send(course)
+    res.status(200).send(course)
 })
 
 export {router as deleteCourseRouter}

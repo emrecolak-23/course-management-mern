@@ -26,3 +26,19 @@ export const HeaderBlock = styled.div`
     }
 `
 
+export const AddButton = styled.div`
+    height: 50px;
+    width: 50px;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background-color: black;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 40px;
+    cursor: pointer;
+`
+

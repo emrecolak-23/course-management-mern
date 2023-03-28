@@ -10,17 +10,19 @@ import {
   import { CourseData } from '../../store/slices/course-slice';
   import {FC} from 'react'
 
+  import { useDispatch } from 'react-redux';
+  import { deleteCourse } from '../../store/thunks/deleteCourse';
   type CheckoutItemProp = {
     courseItem: CourseData
   }
 
 
   const CourseItem:FC<CheckoutItemProp> = ({courseItem}) => {
-
-    const { name, description ,price, category } = courseItem;
+    const dispatch = useDispatch()
+    const { name, description ,price, category, id } = courseItem;
 
     const handleDeleteCourse = () => {
-
+        dispatch<any>(deleteCourse(id))
     }
 
     return <CourseItemContainer>
