@@ -12,7 +12,7 @@ import { NotFoundError } from './errors/not-found-error'
 
 // Import Middlewares
 import { errorHandler } from './middlewares/error-handler'
-
+import { currentUser } from './middlewares/current-user'
 // Initialize express
 const app = express()
 
@@ -24,7 +24,7 @@ app.use(
         secure: process.env.NODE_ENV === 'production'
     })
 )
-
+app.use(currentUser)
 // Aut Routes
 app.use(currentuserRouter)
 app.use(signupRouter)

@@ -6,6 +6,7 @@ interface CourseAttrs {
    name: string,
    description: string,
    category: string
+   price: number
 }
 
 // An interface that describe the properties
@@ -19,7 +20,8 @@ interface CourseModel extends mongoose.Model<CourseDoc> {
 interface CourseDoc extends mongoose.Document {
    name: string,
    description: string,
-   category: string
+   category: string,
+   price: number
 }
 
 const courseSchema = new mongoose.Schema({
@@ -32,9 +34,13 @@ const courseSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    slug: {
+    category: {
         type: String,
-        unique: true
+        required: true  
+    },
+    price: {
+        type: Number,
+        required: true
     }
 }, {
     toJSON: {
