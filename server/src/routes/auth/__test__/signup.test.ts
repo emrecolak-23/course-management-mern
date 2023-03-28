@@ -6,6 +6,7 @@ it('return a 201 on successful signup', async () => {
     return request(app)
             .post('/api/users/signup')
             .send({
+                displayName: 'Emre ÇOLAK',
                 email: 'colakkemre@gmail.com',
                 password: 'pass123'
             })
@@ -17,6 +18,7 @@ it('returns a 400 with an invalid email', async () => {
     return request(app)
         .post('/api/users/signup')
         .send({
+            displayName: 'Emre ÇOLAK',
             email: 'asasklaksa',
             password: 'pass123'
         })
@@ -27,6 +29,7 @@ it('returns a 400 with an invalid password', async () =>{
     return request(app)
         .post('/api/users/signup')
         .send({
+            displayName: 'Emre ÇOLAK',
             email: 'colakkemre@gmail.com',
             password: ''
         })
@@ -53,6 +56,7 @@ it('disallows duplicate emails', async () => {
     await request(app)
             .post('/api/users/signup')
             .send({
+                displayName: 'Emre ÇOLAK',
                 email: 'colakkemre@gmail.com',
                 password: 'pass123'
             })
@@ -60,6 +64,7 @@ it('disallows duplicate emails', async () => {
     await request(app)
             .post('/api/users/signup')
             .send({
+                displayName: 'Emre ÇOLAK',
                 email:'colakkemre@gmail.com',
                 password: 'pass123'
             })
@@ -70,6 +75,7 @@ it('sets a cookie after successful signup', async () => {
     const response = await request(app)
                         .post('/api/users/signup')
                         .send({
+                            displayName: 'Emre ÇOLAK',
                             email: 'colakkemre@gmail.com',
                             password: 'pass123'
                         })
