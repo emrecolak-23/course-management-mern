@@ -3,6 +3,7 @@ import express from 'express'
 import 'express-async-errors'
 import cookieSession from 'cookie-session'
 import cors from 'cors'
+import path from 'path'
 
 // Import Routes
 import { signoutRouter, currentuserRouter, signupRouter, signinRouter } from './routes/auth/index'
@@ -38,6 +39,17 @@ app.use(createCourseRouter)
 app.use(showCourseRouter)
 app.use(updateCourseRouter)
 app.use(deleteCourseRouter)
+
+
+app.use(
+    express.static(path.join(__dirname, "../client/dist"))
+);
+
+app.get("*", (req, res) => {
+    res.sendFile(
+      path.join(__dirname, "../client/dist/index.html")
+)
+})
 
 app.all('*', async (req, res, next) => {
     next(new NotFoundError())
