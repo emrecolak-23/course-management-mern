@@ -4,6 +4,7 @@ import {
     Description,
     Price,
     Category,
+    DetailButton,
     RemoveButton,
   } from './course-item.styles';
 
@@ -12,6 +13,8 @@ import {
 
   import { useDispatch } from 'react-redux';
   import { deleteCourse } from '../../store/thunks/deleteCourse';
+
+
   type CheckoutItemProp = {
     courseItem: CourseData
   }
@@ -25,15 +28,18 @@ import {
         dispatch<any>(deleteCourse(id))
     }
 
-    return <CourseItemContainer>
+
+
+    return <CourseItemContainer >
     <Name>{name}</Name>
     <Description>
       {description}
     </Description>
-    <Price>{price}</Price>
+    <Price>{price} TL</Price>
     <Category>
         {category}
     </Category>
+    <DetailButton to={`/course/${id}`}>&#128269;</DetailButton>
     <RemoveButton onClick={handleDeleteCourse}>&#10005;</RemoveButton>
   </CourseItemContainer>
   }

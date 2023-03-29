@@ -1,13 +1,15 @@
 import styled from "styled-components";
+import { device } from "../../utils/devices";
 
 export const CourseListContainer = styled.div`
-  width: 80%;
+  width: 100%;
   min-height: 90vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: 50px auto 0;
 `
+
 
 export const CourseListHeader = styled.div`
   width: 100%;
@@ -24,6 +26,14 @@ export const HeaderBlock = styled.div`
     &:last-child {
       width: 8%;
     }
+
+    @media ${device.mobileL} { 
+    font-size: 12px;
+  }
+
+  @media ${device.tablet} {
+    font-size: 20px;
+  }
 `
 
 export const AddButton = styled.div`

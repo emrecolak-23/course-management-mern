@@ -12,19 +12,24 @@ import {
   import { CourseData } from '../../store/slices/course-slice';
   import { RootState } from '../../store';
   import CourseItem from '../course-item/course-item.component';
+
+  import { useNavigate } from 'react-router-dom';
 const CourseList = () => {
     const dispatch = useDispatch()
+    const navigate = useNavigate()
 
-    const courses = useSelector<RootState, CourseData[] | null>((state) => {
+    const courses = useSelector<RootState, CourseData[]>((state) => {
         return state.course.courses
     })
 
-    console.log(courses)
 
     useEffect(() => {
         dispatch<any>(fetchCourses())
     },[])
 
+    const routeAddCourse = () => {
+        navigate('/course')
+    }
 
     return (
         <CourseListContainer>
@@ -42,13 +47,13 @@ const CourseList = () => {
             <span>Category</span>
           </HeaderBlock>
           <HeaderBlock>
-            <span>Remove</span>
+            <span>Operation</span>
           </HeaderBlock>
         </CourseListHeader>
-        { courses && courses.map((course) => {
+        { courses.length == 0 ? 'No stored course' : courses.map((course) => {
         return <CourseItem key={course.id} courseItem={course} />;
       })}
-      <AddButton>
+      <AddButton onClick={routeAddCourse}>
         +
       </AddButton>
       </CourseListContainer>
