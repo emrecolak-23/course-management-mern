@@ -1,6 +1,5 @@
 import express, {Request, Response} from 'express'
 import { body } from 'express-validator'
-import { currentUser } from '../../middlewares/current-user'
 import { requireAuth } from '../../middlewares/require-auth'
 import { validateRequest } from '../../middlewares/validate-request'
 
