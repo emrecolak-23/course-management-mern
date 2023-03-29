@@ -6,7 +6,7 @@ type UpdateValues = {
     name: string,
     description: string,
     category: string,
-    price: string
+    price: number
 }
 
 export const updateCourse = createAsyncThunk(

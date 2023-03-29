@@ -48,7 +48,13 @@ const UpdateCourseForm = () => {
     
       const handleSubmit = (event:FormEvent<HTMLFormElement>) => {
         event.preventDefault()
-        dispatch<any>(updateCourse(formField))
+        dispatch<any>(updateCourse({
+            id: formField.id,
+            name: formField.name,
+            description: formField.description,
+            category: formField.category,
+            price: Number(formField.price)
+        }))
         navigate('/')
       }
 
