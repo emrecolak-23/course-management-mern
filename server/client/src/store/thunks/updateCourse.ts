@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import axios from 'axios'
+import api from '../../apis/api'
 
 type UpdateValues = {
     id: string,
@@ -12,7 +12,7 @@ type UpdateValues = {
 export const updateCourse = createAsyncThunk(
   'course/updateCourse',
   async (updateValues:UpdateValues) => {
-    const response = await axios.put(`http://localhost:3000/api/courses/${updateValues.id}`, 
+    const response = await api.put(`/api/courses/${updateValues.id}`, 
     {
         name: updateValues.name, 
         description: updateValues.description,

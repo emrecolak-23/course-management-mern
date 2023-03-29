@@ -1,10 +1,10 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import axios from 'axios'
+import api from '../../apis/api'
 
 export const fetchCourses = createAsyncThunk(
   'course/fetchCourses',
   async () => {
-    const response = await axios.get('http://localhost:3000/api/courses', {
+    const response = await api.get('/api/courses', {
         withCredentials: true
     })
     return response.data

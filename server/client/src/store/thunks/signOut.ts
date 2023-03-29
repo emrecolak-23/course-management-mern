@@ -1,6 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import axios from 'axios'
-
+import api from '../../apis/api'
 type FormValue = {
     displayName: string,
     email: string,
@@ -10,7 +9,7 @@ type FormValue = {
 export const singOut = createAsyncThunk(
   'users/singOut',
   async () => {
-    const response = await axios.get('http://localhost:3000/api/users/signout', {
+    const response = await api.get('/api/users/signout', {
        withCredentials: true
     })
     return response.data

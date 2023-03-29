@@ -1,8 +1,7 @@
 import { UpdateCourseContainer } from "./update-course-form.styles";
 import FormInput from '../form-input/form-input.component';
 import Button from '../button/button.component';
-import axios from "axios";
-
+import api from "../../apis/api";
 import { FormEvent, useState, useEffect } from 'react';
 
 import { ChangeEvent } from 'react';
@@ -32,7 +31,7 @@ const UpdateCourseForm = () => {
     const {name, description, category, price } = formField
 
     useEffect(() => {
-        axios.get(`http://localhost:3000/api/courses/${id}`, {
+        api.get(`/api/courses/${id}`, {
             withCredentials: true
         }).then(result => {
             setFormField(result.data)

@@ -1,7 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { UserData } from '../slices/auth-slice'
-import axios from 'axios'
-
+import api from '../../apis/api'
 type FormValue = {
     displayName: string,
     email: string,
@@ -11,7 +9,7 @@ type FormValue = {
 export const signUp = createAsyncThunk(
   'users/signUp',
   async (formValues: FormValue) => {
-    const response = await axios.post('http://localhost:3000/api/users/signup', formValues, {
+    const response = await api.post('/api/users/signup', formValues, {
        withCredentials: true
     })
     return response.data
