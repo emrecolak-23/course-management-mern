@@ -18,6 +18,8 @@ import { currentUser } from './middlewares/current-user'
 // Initialize express
 const app = express()
 
+
+
 // Middlewares
 app.use(express.json())
 app.use(cors({credentials: true,  origin: 'http://localhost:5173'}))
