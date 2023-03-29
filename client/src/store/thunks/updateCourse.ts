@@ -21,7 +21,6 @@ export const updateCourse = createAsyncThunk(
 }, {
         withCredentials: true
     })
-    console.log(response.data)
     return response.data
   }
 )

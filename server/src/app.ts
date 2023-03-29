@@ -39,20 +39,11 @@ app.use(showCourseRouter)
 app.use(updateCourseRouter)
 app.use(deleteCourseRouter)
 
+app.all('*', async (req, res, next) => {
+    next(new NotFoundError())
+})
+
 app.use(errorHandler)
-
-if (process.env.NODE_ENV === 'production') {
-    // Express will serve up production assets
-    // like main.js or main.css files
-    app.use(express.static('../client/dist/assets'));
-    // Express will serve up index.html file
-    // if doesnt recognize the route
-    const path = require('path');
-    app.get('*', (req, res) => {
-      res.sendFile(path.resolve(__dirname, '../', 'client', 'dist', 'index.html'));
-    });
-}
-
 
 
 export {app}
